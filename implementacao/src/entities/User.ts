@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, JoinColumn } from 'typeorm';
 
 import { Login } from './Login';
 import { Name } from './Name';
@@ -11,8 +11,8 @@ import { Location } from './Location';
 @Entity("user")
 class User{
 
-    @PrimaryColumn()
-    userId: string;
+    @PrimaryGeneratedColumn()
+    userId: Number;
 
     @Column()
     gender: string;

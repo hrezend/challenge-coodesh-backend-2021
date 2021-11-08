@@ -1,10 +1,10 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity("coordinates")
 class Coordinates{
 
-    @PrimaryColumn()
-    id: string;
+    @PrimaryGeneratedColumn("increment")
+    id: Number;
 
     @Column()
     latitude: string;

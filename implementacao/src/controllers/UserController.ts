@@ -4,7 +4,7 @@ import { UserService } from '../services/UserService';
 class UserController{
 
     async landing(request: Request, response: Response) : Promise<Response>{
-        return response.status(201).json({message: 'REST Back-end Challenge 20201209 Running'});
+        return response.status(201).json({message: 'REST Back-end Challenge 20201209 Running!'});
     }
 
     async getUsers(request: Request, response: Response) : Promise<Response>{
