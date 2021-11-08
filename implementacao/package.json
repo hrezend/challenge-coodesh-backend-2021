@@ -4,7 +4,10 @@
   "description": "Implementação do desafio backend da coodesh 2021.",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+    "createmigration": "npx typeorm migration:create -n",
+    "generatemigration": "ts-node-dev node_modules/typeorm/cli.js migration:generate -n",
+    "runmigration": "ts-node-dev node_modules/typeorm/cli.js migration:run"
   },
   "keywords": [
     "nodejs",
@@ -17,7 +20,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.38"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
