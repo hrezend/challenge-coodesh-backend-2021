@@ -6,10 +6,10 @@ class Timezone{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
     offset: string;
 
-    @Column()
+    @Column({nullable: true})
     description: string;
 
 }

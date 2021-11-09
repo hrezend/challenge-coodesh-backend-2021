@@ -6,10 +6,10 @@ class Registered{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
     date: Date;
 
-    @Column()
+    @Column({nullable: true})
     age: Number;
 
 }

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, JoinColumn, IsNull } from 'typeorm';
 
 import { Login } from './Login';
 import { Name } from './Name';
@@ -36,32 +36,53 @@ class User{
     status: string;
 
     @OneToOne(() => Id)
-    @JoinColumn()
+    @JoinColumn({name: 'idId'})
     id: Id;
 
+    @Column({nullable: true})
+    idId: Number;
+
     @OneToOne(() => Name)
-    @JoinColumn()
+    @JoinColumn({name: 'nameId'})
     name: Name;
 
+    @Column({nullable: true})
+    nameId: Number;
+
     @OneToOne(() => Location)
-    @JoinColumn()
+    @JoinColumn({name: 'locationId'})
     location: Location;
 
+    @Column({nullable: true})
+    locationId: Number;
+
     @OneToOne(() => Login)
-    @JoinColumn()
+    @JoinColumn({name: 'loginId'})
     login: Login;
 
+    @Column({nullable: true})
+    loginId: Number;
+
     @OneToOne(() => Dob)
-    @JoinColumn()
+    @JoinColumn({name: 'dobId'})
     dob: Dob;
 
+    @Column({nullable: true})
+    dobId: Number;
+
     @OneToOne(() => Registered)
-    @JoinColumn()
+    @JoinColumn({name: 'registeredId'})
     registered: Registered;
 
+    @Column({nullable: true})
+    registeredId: Number;
+
     @OneToOne(() => Picture)
-    @JoinColumn()
+    @JoinColumn({name: 'pictureId'})
     picture: Picture;
+
+    @Column({nullable: true})
+    pictureId: Number;
 }
 
 export { User }

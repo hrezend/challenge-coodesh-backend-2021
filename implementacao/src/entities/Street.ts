@@ -6,10 +6,10 @@ class Street{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
     number: Number;
 
-    @Column()
+    @Column({nullable: true})
     name: string;
 
 }

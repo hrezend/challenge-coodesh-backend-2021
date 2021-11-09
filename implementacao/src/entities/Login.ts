@@ -6,22 +6,25 @@ class Login{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
+    uuid: string;
+
+    @Column({nullable: true})
     username: string;
 
-    @Column()
+    @Column({nullable: true})
     password: string;
 
-    @Column()
+    @Column({nullable: true})
     salt: string;
 
-    @Column()
+    @Column({nullable: true})
     md5: string;
 
-    @Column()
+    @Column({nullable: true})
     sha1: string;
 
-    @Column()
+    @Column({nullable: true})
     sha256: string;
 
 }

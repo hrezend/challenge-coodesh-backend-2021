@@ -6,13 +6,13 @@ class Name{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
     title: string;
 
-    @Column()
+    @Column({nullable: true})
     first: string;
 
-    @Column()
+    @Column({nullable: true})
     last: string;
     
 }

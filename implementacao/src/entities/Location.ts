@@ -10,29 +10,38 @@ class Location{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
     city: string;
 
-    @Column()
+    @Column({nullable: true})
     state: string;
 
-    @Column()
+    @Column({nullable: true})
     country: string;
 
-    @Column()
+    @Column({nullable: true})
     postcode: string;
 
     @OneToOne(() => Street)
-    @JoinColumn()
+    @JoinColumn({name: 'streetId'})
     street: Street;
 
+    @Column({nullable: true})
+    streetId: Number;
+
     @OneToOne(() => Coordinates)
-    @JoinColumn()
+    @JoinColumn({name: 'coordinatesId'})
     coordinates: Coordinates;
 
+    @Column({nullable: true})
+    coordinatesId: Number;
+
     @OneToOne(() => Timezone)
-    @JoinColumn()
+    @JoinColumn({name: 'timezoneId'})
     timezone: Timezone;
+
+    @Column({nullable: true})
+    timezoneId: Number;
 }
 
 export { Location }

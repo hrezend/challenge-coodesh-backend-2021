@@ -19,6 +19,15 @@ class LocationService{
         return location;
     }
 
+    async getLocationByID(id: Number){
+        const location = await this.locationRepository.find({
+            where: {id},
+            relations: ["timezone", "coordinates", "street"]
+        });
+        
+        return location;
+    }
+
 }
 
 export { LocationService }

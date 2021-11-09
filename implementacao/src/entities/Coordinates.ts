@@ -6,10 +6,10 @@ class Coordinates{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
     latitude: string;
 
-    @Column()
+    @Column({nullable: true})
     longitude: string;
 
 }

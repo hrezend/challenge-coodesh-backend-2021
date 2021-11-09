@@ -6,13 +6,13 @@ class Picture{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
     thumbnail: string;
 
-    @Column()
+    @Column({nullable: true})
     medium: string;
 
-    @Column()
+    @Column({nullable: true})
     large: string;
 
 }

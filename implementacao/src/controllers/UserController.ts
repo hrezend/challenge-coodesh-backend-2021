@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
+
 import { UserService } from '../services/UserService';
+import UserView from '../views/UserView';
 
 class UserController{
 
@@ -9,33 +11,48 @@ class UserController{
 
     async getUsers(request: Request, response: Response) : Promise<Response>{
         const userService = new UserService();
-        const users = userService.getUsers();
+        const users = await userService.getUsers();
         
-        return response.status(201).json(users);
+        if(users){
+            return response.status(200).json(users);
+        }
+
+        return response.status(400).json({message: 'Users does not exists!'});
     }
 
     async getUserByID(request: Request, response: Response) : Promise<Response>{
-        const { id } = request.params;
-        const userService = new UserService();
-        const user = userService.getUserByID(id);
+        const {userId} = request.params;
         
-        return response.status(201).json(user);
+        const userService = new UserService();
+        const user = await userService.getUserByID(userId);
+        
+        if(user){
+            return response.status(200).json(user);
+        }
+
+        return response.status(400).json({message: 'User does not exists!'});
     }
 
     async updateUser(request: Request, response: Response) : Promise<Response>{
-        const { id } = request.params;
+        const {userId} = request.params;
+
         const userService = new UserService();
-        const user = userService.updateUser(id);
+        const user = await userService.updateUser(userId);
         
         return response.status(201).json({message: 'User updated!'});
     }
 
     async deleteUser(request: Request, response: Response) : Promise<Response>{
-        const { id } = request.params;
+        const {userId} = request.params;
+
         const userService = new UserService();
-        const user = userService.deleteUser(id);
+        const userDelete = await userService.deleteUser(userId);
         
-        return response.status(201).json({message: 'User deleted!'});
+        if(userDelete){
+            return response.status(201).json({message: 'User deleted!'});
+        }
+
+        return response.status(400).json({message: 'User does not exists.'});
     }
 
 }

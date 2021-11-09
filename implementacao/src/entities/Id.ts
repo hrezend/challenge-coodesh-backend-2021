@@ -6,10 +6,10 @@ class Id{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column()
+    @Column({nullable: true})
     name: string;
 
-    @Column()
+    @Column({nullable: true})
     value: string;
     
 }

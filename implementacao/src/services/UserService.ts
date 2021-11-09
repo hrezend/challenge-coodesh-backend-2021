@@ -12,27 +12,48 @@ class UserService{
     }
     
     async getUsers(){
-        const users = await this.userRepository.createQueryBuilder().getMany();
-        
+        const users = await this.userRepository.find({
+            relations: ["name", "picture", "location", "dob", "id", "registered", "login"]
+        });
+
         return users;
     }
 
     async getUserByID(userId: Number){
-        const user = await this.userRepository.createQueryBuilder().select(User).where("userId = :userId", {userId}).getOne();
-
-        return user;
-    }
-
-    async updateUser(userId: Number){
-        const user = await this.userRepository.createQueryBuilder().update(User).set({ name: "HÉRSÃO" }).where("userId = :userId", {userId}).execute();
+        const user = await this.userRepository.find({
+            where: {userId},
+            relations: ["name", "picture", "location", "dob", "id", "registered", "login"]
+        });
         
         return user;
     }
 
-    async deleteUser(userId: Number){
-        const user = await this.userRepository.createQueryBuilder().delete().from(User).where("userId = :userId", {userId}).execute();
+    async updateUser(userId: Number){
+        const userExists = await this.userRepository.find({
+            where: {userId},
+        });
 
-        return user;
+        if(!userExists){
+            return false;
+        }
+
+        await this.userRepository.createQueryBuilder().update(User).set({ name: "HÉRSÃO" }).where("userId = :userId", {userId}).execute();
+        
+        return true;
+    }
+
+    async deleteUser(userId: Number){
+        const userExists = await this.userRepository.find({
+            where: {userId},
+        });
+
+        if(!userExists){
+            return false;
+        }
+
+        await this.userRepository.createQueryBuilder().delete().from(User).where("userId = :userId", {userId}).execute();
+        
+        return true;
     }
 
     async createUser(gender: string, email: string, phone: string, cell: string, nat: string, idId: Number, nameId: Number, locationId: Number, loginId: Number, dobId: Number, registeredId: Number, pictureId: Number){
