@@ -6,18 +6,22 @@ import UserView from '../views/UserView';
 class UserController{
 
     async landing(request: Request, response: Response) : Promise<Response>{
-        return response.status(201).json({message: 'REST Back-end Challenge 20201209 Running!'});
+        const author = 'Hérson Rezende (https://hrezend.github.io/resume-web)';
+        const message = 'REST Back-end Challenge 20201209 Running!';
+        const instructions = 'O clock do CRON está setado para às 12:00pm. Para mais detalhes, consulte o README do projeto!';
+        
+        return response.status(201).json({author, message, instructions});
     }
 
     async getUsers(request: Request, response: Response) : Promise<Response>{
         const userService = new UserService();
         const users = await userService.getUsers();
         
-        if(users){
-            return response.status(200).json(users);
+        if(users && !(users.length == 0)){
+            return response.status(200).json(UserView.renderMany(users));
         }
 
-        return response.status(400).json({message: 'Users does not exists!'});
+        return response.status(400).json({message: 'No users in database.'});
     }
 
     async getUserByID(request: Request, response: Response) : Promise<Response>{
@@ -27,7 +31,7 @@ class UserController{
         const user = await userService.getUserByID(userId);
         
         if(user){
-            return response.status(200).json(user);
+            return response.status(200).json(UserView.render(user));
         }
 
         return response.status(400).json({message: 'User does not exists!'});

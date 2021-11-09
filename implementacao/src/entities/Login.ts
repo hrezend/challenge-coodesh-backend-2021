@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+
+import { User } from './User';
 
 @Entity("login")
 class Login{
@@ -27,6 +29,8 @@ class Login{
     @Column({nullable: true})
     sha256: string;
 
+    @OneToOne(() => User, user => user.login, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    user: User;
 }
 
 export { Login }

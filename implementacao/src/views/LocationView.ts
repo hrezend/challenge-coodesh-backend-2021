@@ -1,9 +1,5 @@
 import { Location } from "../entities/Location";
 
-import CoordinatesView from "./CoordinatesView";
-import StreetView from "./StreetView";
-import TimezoneView from "./TimezoneView";
-
 export default{
 
     render(location: Location){
@@ -13,9 +9,18 @@ export default{
             country: location.country,
             postcode: location.postcode,
 
-            coordinates: CoordinatesView.render(location.coordinates),
-            street: StreetView.render(location.street),
-            timezone: TimezoneView.render(location.timezone),
+            timezone:{
+                offset: location.offset,
+                description: location.description,
+            },
+            coordinates:{
+                latitude: location.latitude,
+                longitude: location.longitude,
+            },
+            street:{
+                number: location.number,
+                name: location.street,
+            }
         };
     }
     

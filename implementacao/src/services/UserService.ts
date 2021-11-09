@@ -20,7 +20,7 @@ class UserService{
     }
 
     async getUserByID(userId: Number){
-        const user = await this.userRepository.find({
+        const user = await this.userRepository.findOne({
             where: {userId},
             relations: ["name", "picture", "location", "dob", "id", "registered", "login"]
         });

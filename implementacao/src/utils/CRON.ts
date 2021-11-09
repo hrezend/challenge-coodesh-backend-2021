@@ -3,9 +3,6 @@ import axios from 'axios';
 
 import { UserService } from '../services/UserService';
 import { NameService } from '../services/NameService';
-import { StreetService } from '../services/StreetService';
-import { CoordinatesService } from '../services/CoordinatesService';
-import { TimezoneService } from '../services/TimezoneService';
 import { LocationService } from '../services/LocationService';
 import { LoginService } from '../services/LoginService';
 import { DobService } from '../services/DobService';
@@ -21,9 +18,6 @@ class CRON{
             const req = await axios.get('https://randomuser.me/api/');
 
             const nameService = new NameService();
-            const streetService = new StreetService();
-            const coordinatesService = new CoordinatesService();
-            const timezoneService = new TimezoneService();
             const locationService = new LocationService();
             const loginService = new LoginService();
             const dobService = new DobService();
@@ -46,10 +40,7 @@ class CRON{
                 const { gender, email, phone, cell, nat } = req.data.results[i];
 
                 const name = await nameService.createName(title, first, last);
-                const street = await streetService.createStreet(number, nameST);
-                const coordinates = await coordinatesService.createCoordinates(latitude, longitude);
-                const timezone = await timezoneService.createTimezone(offset, description);
-                const location = await locationService.createLocation(city, state, country, postcode, street.id, coordinates.id, timezone.id);
+                const location = await locationService.createLocation(city, state, country, postcode, latitude, longitude, offset, description, number, nameST);
                 const login = await loginService.createLogin(uuid, username, password, salt, md5, sha1, sha256);
                 const dob = await dobService.createDob(dateDOB, ageDOB);
                 const id = await idService.createId(nameID, valueID);

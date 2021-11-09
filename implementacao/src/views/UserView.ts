@@ -1,6 +1,12 @@
 import { User } from "../entities/User";
 
+import DobView from "./DobView";
+import IdView from "./IdView";
 import LocationView from "./LocationView";
+import LoginView from "./LoginView";
+import NameView from "./NameView";
+import PictureView from "./PictureView";
+import RegisteredView from "./RegisteredView";
 
 export default{
 
@@ -16,38 +22,13 @@ export default{
             cell: user.cell,
             nat: user.nat,
 
-            name:{
-                title: user.name.title,
-                first: user.name.first,
-                last: user.name.last,
-            },
-            picture: {
-                large: user.picture.large,
-                medium: user.picture.medium,
-                thumbnail: user.picture.thumbnail,
-            },
-            registered: {
-                date: user.registered.date,
-                age: user.registered.age,
-            },
-            dob: {
-                date: user.dob.date,
-                age: user.dob.age,
-            },
-            login: {
-                uuid: user.login.uuid,
-                username: user.login.username,
-                password: user.login.password,
-                md5: user.login.md5,
-                salt: user.login.salt,
-                sha1: user.login.sha1,
-                sha256: user.login.sha256,
-            },
-            id: {
-                uuid: user.login.uuid,
-                username: user.login.username,
-            },
+            name: NameView.render(user.name),
+            login: LoginView.render(user.login),
             location: LocationView.render(user.location),
+            picture: PictureView.render(user.picture),
+            registered: RegisteredView.render(user.registered),
+            dob: DobView.render(user.dob),
+            id: IdView.render(user.id),
         };
     },
 

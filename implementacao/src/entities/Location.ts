@@ -1,14 +1,18 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 
-import { Coordinates } from './Coordinates';
-import { Street } from './Street';
-import { Timezone } from './Timezone';
+import { User } from './User';
 
 @Entity("location")
 class Location{
 
     @PrimaryGeneratedColumn("increment")
     id: Number;
+
+    @Column({nullable: true})
+    number: Number;
+
+    @Column({nullable: true})
+    street: string;
 
     @Column({nullable: true})
     city: string;
@@ -22,26 +26,20 @@ class Location{
     @Column({nullable: true})
     postcode: string;
 
-    @OneToOne(() => Street)
-    @JoinColumn({name: 'streetId'})
-    street: Street;
+    @Column({nullable: true})
+    latitude: string;
 
     @Column({nullable: true})
-    streetId: Number;
-
-    @OneToOne(() => Coordinates)
-    @JoinColumn({name: 'coordinatesId'})
-    coordinates: Coordinates;
+    longitude: string;
 
     @Column({nullable: true})
-    coordinatesId: Number;
-
-    @OneToOne(() => Timezone)
-    @JoinColumn({name: 'timezoneId'})
-    timezone: Timezone;
+    offset: string;
 
     @Column({nullable: true})
-    timezoneId: Number;
+    description: string;
+    
+    @OneToOne(() => User, user => user.location, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    user: User;
 }
 
 export { Location }

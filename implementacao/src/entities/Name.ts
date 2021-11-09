@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+
+import { User } from './User';
 
 @Entity("name")
 class Name{
@@ -14,6 +16,9 @@ class Name{
 
     @Column({nullable: true})
     last: string;
+
+    @OneToOne(() => User, user => user.name, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    user: User;
     
 }
 
