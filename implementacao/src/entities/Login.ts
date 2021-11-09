@@ -1,6 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
-
-import { User } from './User';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity("login")
 class Login{
@@ -8,29 +6,27 @@ class Login{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column({nullable: true})
+    @Column()
     uuid: string;
 
-    @Column({nullable: true})
+    @Column()
     username: string;
 
-    @Column({nullable: true})
+    @Column()
     password: string;
 
-    @Column({nullable: true})
+    @Column()
     salt: string;
 
-    @Column({nullable: true})
+    @Column()
     md5: string;
 
-    @Column({nullable: true})
+    @Column()
     sha1: string;
 
-    @Column({nullable: true})
+    @Column()
     sha256: string;
 
-    @OneToOne(() => User, user => user.login, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    user: User;
 }
 
 export { Login }

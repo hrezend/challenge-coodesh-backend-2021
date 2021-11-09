@@ -1,6 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
-
-import { User } from './User';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity("name")
 class Name{
@@ -8,17 +6,14 @@ class Name{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column({nullable: true})
+    @Column()
     title: string;
 
-    @Column({nullable: true})
+    @Column()
     first: string;
 
-    @Column({nullable: true})
+    @Column()
     last: string;
-
-    @OneToOne(() => User, user => user.name, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    user: User;
     
 }
 

@@ -13,7 +13,7 @@ class UserService{
     
     async getUsers(){
         const users = await this.userRepository.find({
-            relations: ["name", "picture", "location", "dob", "id", "registered", "login"]
+            relations: ["name", "picture", "location", "dob", "importedId", "registered", "login"]
         });
 
         return users;
@@ -21,8 +21,8 @@ class UserService{
 
     async getUserByID(userId: Number){
         const user = await this.userRepository.findOne({
-            where: {userId},
-            relations: ["name", "picture", "location", "dob", "id", "registered", "login"]
+            where: {id: userId},
+            relations: ["name", "picture", "location", "dob", "importedId", "registered", "login"]
         });
         
         return user;
@@ -30,28 +30,28 @@ class UserService{
 
     async updateUser(userId: Number){
         const userExists = await this.userRepository.find({
-            where: {userId},
+            where: {id: userId},
         });
 
         if(!userExists){
             return false;
         }
 
-        await this.userRepository.createQueryBuilder().update(User).set({ name: "HÉRSÃO" }).where("userId = :userId", {userId}).execute();
+        await this.userRepository.createQueryBuilder().update(User).set({ name: "HÉRSÃO" }).where("id = :userId", {userId}).execute();
         
         return true;
     }
 
     async deleteUser(userId: Number){
         const userExists = await this.userRepository.find({
-            where: {userId},
+            where: {id: userId},
         });
 
         if(!userExists){
             return false;
         }
 
-        await this.userRepository.createQueryBuilder().delete().from(User).where("userId = :userId", {userId}).execute();
+        await this.userRepository.createQueryBuilder().delete().from(User).where("id = :userId", {userId}).execute();
         
         return true;
     }

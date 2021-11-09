@@ -6,7 +6,7 @@ import { NameService } from '../services/NameService';
 import { LocationService } from '../services/LocationService';
 import { LoginService } from '../services/LoginService';
 import { DobService } from '../services/DobService';
-import { IdService } from '../services/IdService';
+import { ImportedIdService } from '../services/ImportedIdService';
 import { RegisteredService } from '../services/RegisteredService';
 import { PictureService } from '../services/PictureService';
 
@@ -21,7 +21,7 @@ class CRON{
             const locationService = new LocationService();
             const loginService = new LoginService();
             const dobService = new DobService();
-            const idService = new IdService();
+            const importedIdService = new ImportedIdService();
             const registeredService = new RegisteredService();
             const pictureService = new PictureService();
             const userService = new UserService();
@@ -43,7 +43,7 @@ class CRON{
                 const location = await locationService.createLocation(city, state, country, postcode, latitude, longitude, offset, description, number, nameST);
                 const login = await loginService.createLogin(uuid, username, password, salt, md5, sha1, sha256);
                 const dob = await dobService.createDob(dateDOB, ageDOB);
-                const id = await idService.createId(nameID, valueID);
+                const id = await importedIdService.createId(nameID, valueID);
                 const registered = await registeredService.createRegistered(dateRG, ageRG);
                 const picture = await pictureService.createPicture(large, medium, thumbnail);
 

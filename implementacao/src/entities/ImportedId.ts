@@ -1,17 +1,17 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity("dob")
-class Dob{
+@Entity("importedId")
+class ImportedId{
 
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
     @Column()
-    date: Date;
+    name: string;
 
     @Column()
-    age: Number;
-    
+    value: string;
+
 }
 
-export { Dob }
+export { ImportedId }

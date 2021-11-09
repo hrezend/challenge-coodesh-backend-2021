@@ -4,7 +4,7 @@ import { Login } from './Login';
 import { Name } from './Name';
 import { Dob } from './Dob';
 import { Registered } from './Registered';
-import { Id } from './Id';
+import { ImportedId } from './ImportedId';
 import { Picture } from './Picture';
 import { Location } from './Location';
 
@@ -12,7 +12,7 @@ import { Location } from './Location';
 class User{
 
     @PrimaryGeneratedColumn()
-    userId: Number;
+    id: Number;
 
     @Column()
     gender: string;
@@ -35,54 +35,54 @@ class User{
     @Column({default:"PUBLISHED"})
     status: string;
 
-    @OneToOne(() => Id, id => id.user, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'idId'})
-    id: Id;
+    @OneToOne(() => ImportedId)
+    @JoinColumn({name: 'importedID_id'})
+    importedId: ImportedId;
 
-    @Column({nullable: true})
-    idId: Number;
+    @Column()
+    importedId_id: Number;
 
-    @OneToOne(() => Name, name => name.user, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'nameId'})
+    @OneToOne(() => Name)
+    @JoinColumn({name: 'name_id'})
     name: Name;
 
-    @Column({nullable: true})
-    nameId: Number;
+    @Column()
+    name_id: Number;
 
-    @OneToOne(() => Location, location => location.user, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'locationId'})
+    @OneToOne(() => Location)
+    @JoinColumn({name: 'location_id'})
     location: Location;
 
-    @Column({nullable: true})
-    locationId: Number;
+    @Column()
+    location_id: Number;
 
-    @OneToOne(() => Login, login => login.user, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'loginId'})
+    @OneToOne(() => Login)
+    @JoinColumn({name: 'login_id'})
     login: Login;
 
-    @Column({nullable: true})
-    loginId: Number;
+    @Column()
+    login_id: Number;
 
-    @OneToOne(() => Dob, dob => dob.user, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'dobId'})
+    @OneToOne(() => Dob)
+    @JoinColumn({name: 'dob_id'})
     dob: Dob;
 
-    @Column({nullable: true})
-    dobId: Number;
+    @Column()
+    dob_id: Number;
 
-    @OneToOne(() => Registered, registered => registered.user, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'registeredId'})
+    @OneToOne(() => Registered)
+    @JoinColumn({name: 'registered_id'})
     registered: Registered;
 
-    @Column({nullable: true})
-    registeredId: Number;
+    @Column()
+    registered_id: Number;
 
-    @OneToOne(() => Picture, picture => picture.user, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'pictureId'})
+    @OneToOne(() => Picture)
+    @JoinColumn({name: 'picture_id'})
     picture: Picture;
 
-    @Column({nullable: true})
-    pictureId: Number;
+    @Column()
+    picture_id: Number;
 }
 
 export { User }

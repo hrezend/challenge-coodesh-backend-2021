@@ -11,7 +11,7 @@ class LocationService{
         this.locationRepository = getCustomRepository(LocationRepository);
     }
 
-    async createLocation(city: string, state: string, country: string, postcode: string, latitude: string, longitude: string, offset: string, description: string, number: Number, street: string){
+    async createLocation(city: string, state: string, country: string, postcode: Number, latitude: string, longitude: string, offset: string, description: string, number: Number, street: string){
         const location = this.locationRepository.create({city, state, country, postcode, latitude, longitude, offset, description, number, street});
         
         await this.locationRepository.save(location);

@@ -1,6 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-import { User } from './User';
 
 @Entity("location")
 class Location{
@@ -8,38 +7,36 @@ class Location{
     @PrimaryGeneratedColumn("increment")
     id: Number;
 
-    @Column({nullable: true})
+    @Column()
     number: Number;
 
-    @Column({nullable: true})
+    @Column()
     street: string;
 
-    @Column({nullable: true})
+    @Column()
     city: string;
 
-    @Column({nullable: true})
+    @Column()
     state: string;
 
-    @Column({nullable: true})
+    @Column()
     country: string;
 
-    @Column({nullable: true})
-    postcode: string;
+    @Column()
+    postcode: Number;
 
-    @Column({nullable: true})
+    @Column()
     latitude: string;
 
-    @Column({nullable: true})
+    @Column()
     longitude: string;
 
-    @Column({nullable: true})
+    @Column()
     offset: string;
 
-    @Column({nullable: true})
+    @Column()
     description: string;
-    
-    @OneToOne(() => User, user => user.location, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    user: User;
+
 }
 
 export { Location }

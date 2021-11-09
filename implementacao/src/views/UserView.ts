@@ -1,7 +1,7 @@
 import { User } from "../entities/User";
 
 import DobView from "./DobView";
-import IdView from "./IdView";
+import ImportedIdView from "./ImportedIdView";
 import LocationView from "./LocationView";
 import LoginView from "./LoginView";
 import NameView from "./NameView";
@@ -28,7 +28,7 @@ export default{
             picture: PictureView.render(user.picture),
             registered: RegisteredView.render(user.registered),
             dob: DobView.render(user.dob),
-            id: IdView.render(user.id),
+            id: ImportedIdView.render(user.importedId),
         };
     },
 
