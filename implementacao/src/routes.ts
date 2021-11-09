@@ -14,5 +14,6 @@ router.delete('/users/:userId', userController.deleteUser);
 
 const cron = new CRON();
 router.get('/cron', cron.download);
+router.post('/cron', cron.download);
 
 export { router };

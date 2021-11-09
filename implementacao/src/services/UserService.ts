@@ -19,48 +19,48 @@ class UserService{
         return users;
     }
 
-    async getUserByID(userId: Number){
+    async getUserByID(id: Number){
         const user = await this.userRepository.findOne({
-            where: {id: userId},
+            where: {id},
             relations: ["name", "picture", "location", "dob", "importedId", "registered", "login"]
         });
         
         return user;
     }
 
-    async updateUser(userId: Number){
+    async updateUser(id: Number){
         const userExists = await this.userRepository.find({
-            where: {id: userId},
+            where: {id},
         });
 
         if(!userExists){
             return false;
         }
 
-        await this.userRepository.createQueryBuilder().update(User).set({ name: "HÉRSÃO" }).where("id = :userId", {userId}).execute();
+        await this.userRepository.createQueryBuilder().update(User).set({ name: "HÉRSÃO" }).where("id = :id", {id}).execute();
         
         return true;
     }
 
-    async deleteUser(userId: Number){
+    async deleteUser(id: Number){
         const userExists = await this.userRepository.find({
-            where: {id: userId},
+            where: {id},
         });
 
         if(!userExists){
             return false;
         }
 
-        await this.userRepository.createQueryBuilder().delete().from(User).where("id = :userId", {userId}).execute();
+        await this.userRepository.createQueryBuilder().delete().from(User).where("id = :id", {id}).execute();
         
         return true;
     }
 
-    async createUser(gender: string, email: string, phone: string, cell: string, nat: string, idId: Number, nameId: Number, locationId: Number, loginId: Number, dobId: Number, registeredId: Number, pictureId: Number){
-        const user = this.userRepository.create({gender, email, phone, cell, nat, idId, nameId, locationId, loginId, dobId, registeredId, pictureId});
-
+    async createUser(gender: string, email: string, phone: string, cell: string, nat: string){
+        const user = this.userRepository.create({gender, email, phone, cell, nat});
+        
         await this.userRepository.save(user);
-
+        
         return user;
     }
 

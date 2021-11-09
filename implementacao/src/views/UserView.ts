@@ -12,7 +12,7 @@ export default{
 
     render(user: User){
         return {
-            userId: user.userId,
+            userId: user.id,
             status: user.status,
             imported_t: user.imported_t,
 
@@ -26,9 +26,9 @@ export default{
             login: LoginView.render(user.login),
             location: LocationView.render(user.location),
             picture: PictureView.render(user.picture),
+            id: ImportedIdView.render(user.importedId),
             registered: RegisteredView.render(user.registered),
             dob: DobView.render(user.dob),
-            id: ImportedIdView.render(user.importedId),
         };
     },
 

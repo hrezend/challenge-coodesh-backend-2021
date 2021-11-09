@@ -39,15 +39,15 @@ class CRON{
                 const { large, medium, thumbnail } = req.data.results[i].picture;
                 const { gender, email, phone, cell, nat } = req.data.results[i];
 
-                const name = await nameService.createName(title, first, last);
-                const location = await locationService.createLocation(city, state, country, postcode, latitude, longitude, offset, description, number, nameST);
-                const login = await loginService.createLogin(uuid, username, password, salt, md5, sha1, sha256);
-                const dob = await dobService.createDob(dateDOB, ageDOB);
-                const id = await importedIdService.createId(nameID, valueID);
-                const registered = await registeredService.createRegistered(dateRG, ageRG);
-                const picture = await pictureService.createPicture(large, medium, thumbnail);
+                const user = await userService.createUser(gender, email, phone, cell, nat);
 
-                const user = await userService.createUser(gender, email, phone, cell, nat, id.id, name.id, location.id, login.id, dob.id, registered.id, picture.id);
+                const name = await nameService.createName(title, first, last, user.id);
+                const location = await locationService.createLocation(city, state, country, postcode, latitude, longitude, offset, description, number, nameST, user.id);
+                const login = await loginService.createLogin(uuid, username, password, salt, md5, sha1, sha256, user.id);
+                const dob = await dobService.createDob(dateDOB, ageDOB, user.id);
+                const id = await importedIdService.createId(nameID, valueID, user.id);
+                const registered = await registeredService.createRegistered(dateRG, ageRG, user.id);
+                const picture = await pictureService.createPicture(large, medium, thumbnail, user.id);
             }
 
             return response.status(200).json(user);

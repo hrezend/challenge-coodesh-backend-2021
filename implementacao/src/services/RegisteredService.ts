@@ -11,8 +11,8 @@ class RegisteredService{
         this.registeredRepository = getCustomRepository(RegisteredRepository);
     }
 
-    async createRegistered(date: Date, age: Number){
-        const registered = this.registeredRepository.create({date, age});
+    async createRegistered(date: Date, age: Number, user_id: Number){
+        const registered = this.registeredRepository.create({date, age, user_id});
         
         await this.registeredRepository.save(registered);
 

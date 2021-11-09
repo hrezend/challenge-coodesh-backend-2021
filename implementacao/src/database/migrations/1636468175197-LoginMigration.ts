@@ -8,11 +8,12 @@ export class LoginMigration1636468175197 implements MigrationInterface {
                 name: "login",
                 columns: [
                     {
-                        name: "id",
-                        type: "integer",
+                        name: 'id',
+                        type: 'integer',
+                        unsigned: true,
                         isPrimary: true,
-                        isUnique: true,
                         isGenerated: true,
+                        generationStrategy: 'increment',
                     },
                     {
                         name: "uuid",
@@ -48,7 +49,22 @@ export class LoginMigration1636468175197 implements MigrationInterface {
                         name: "sha256",
                         type: "varchar",
                         isNullable: true,
+                    },
+                    {
+                        name: "user_id",
+                        type: "integer",
+                        isNullable: true,
                     }
+                ],
+                foreignKeys: [
+                    {
+                        name: "fk_user",
+                        referencedTableName: "user",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["user_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE",
+                    },
                 ]
             })
         );

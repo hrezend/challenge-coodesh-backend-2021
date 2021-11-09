@@ -1,11 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 
+import { User } from './User';
 
 @Entity("location")
 class Location{
 
-    @PrimaryGeneratedColumn("increment")
-    id: Number;
+    @PrimaryGeneratedColumn('increment')
+    id: number;
 
     @Column()
     number: Number;
@@ -36,6 +37,13 @@ class Location{
 
     @Column()
     description: string;
+
+    @OneToOne(() => User, user => user.location)
+    @JoinColumn({name: 'user_id'})
+    user: User;
+
+    @Column()
+    user_id: Number;
 
 }
 

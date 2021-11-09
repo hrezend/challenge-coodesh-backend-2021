@@ -8,11 +8,12 @@ export class RegisteredMigration1636468168840 implements MigrationInterface {
                 name: "registered",
                 columns: [
                     {
-                        name: "id",
-                        type: "integer",
+                        name: 'id',
+                        type: 'integer',
+                        unsigned: true,
                         isPrimary: true,
-                        isUnique: true,
                         isGenerated: true,
+                        generationStrategy: 'increment',
                     },
                     {
                         name: "date",
@@ -23,7 +24,22 @@ export class RegisteredMigration1636468168840 implements MigrationInterface {
                         name: "age",
                         type: "integer",
                         isNullable: true,
+                    },
+                    {
+                        name: "user_id",
+                        type: "integer",
+                        isNullable: true,
                     }
+                ],
+                foreignKeys: [
+                    {
+                        name: "fk_user",
+                        referencedTableName: "user",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["user_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE",
+                    },
                 ]
             })
         );

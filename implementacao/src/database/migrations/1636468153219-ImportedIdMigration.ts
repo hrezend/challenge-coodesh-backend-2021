@@ -8,11 +8,12 @@ export class ImportedIdMigration1636468153219 implements MigrationInterface {
                 name: "importedId",
                 columns: [
                     {
-                        name: "id",
-                        type: "integer",
+                        name: 'id',
+                        type: 'integer',
+                        unsigned: true,
                         isPrimary: true,
-                        isUnique: true,
                         isGenerated: true,
+                        generationStrategy: 'increment',
                     },
                     {
                         name: "name",
@@ -23,7 +24,22 @@ export class ImportedIdMigration1636468153219 implements MigrationInterface {
                         name: "value",
                         type: "varchar",
                         isNullable: true,
+                    },
+                    {
+                        name: "user_id",
+                        type: "integer",
+                        isNullable: true,
                     }
+                ],
+                foreignKeys: [
+                    {
+                        name: "fk_user",
+                        referencedTableName: "user",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["user_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE",
+                    },
                 ]
             })
         );

@@ -1,10 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+
+import { User } from './User';
 
 @Entity("dob")
 class Dob{
 
-    @PrimaryGeneratedColumn("increment")
-    id: Number;
+    @PrimaryGeneratedColumn('increment')
+    id: number;
 
     @Column()
     date: Date;
@@ -12,6 +14,13 @@ class Dob{
     @Column()
     age: Number;
     
+    @OneToOne(() => User, user => user.dob)
+    @JoinColumn({name: 'user_id'})
+    user: User;
+
+    @Column()
+    user_id: Number;
+
 }
 
 export { Dob }

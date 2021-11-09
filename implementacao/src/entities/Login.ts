@@ -1,10 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+
+import { User } from './User';
 
 @Entity("login")
 class Login{
 
-    @PrimaryGeneratedColumn("increment")
-    id: Number;
+    @PrimaryGeneratedColumn('increment')
+    id: number;
 
     @Column()
     uuid: string;
@@ -26,6 +28,13 @@ class Login{
 
     @Column()
     sha256: string;
+
+    @OneToOne(() => User, user => user.login)
+    @JoinColumn({name: 'user_id'})
+    user: User;
+
+    @Column()
+    user_id: Number;
 
 }
 

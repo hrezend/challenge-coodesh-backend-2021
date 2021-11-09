@@ -8,11 +8,12 @@ export class PictureMigration1636468196913 implements MigrationInterface {
                 name: "picture",
                 columns: [
                     {
-                        name: "id",
-                        type: "integer",
+                        name: 'id',
+                        type: 'integer',
+                        unsigned: true,
                         isPrimary: true,
-                        isUnique: true,
                         isGenerated: true,
+                        generationStrategy: 'increment',
                     },
                     {
                         name: "large",
@@ -28,6 +29,21 @@ export class PictureMigration1636468196913 implements MigrationInterface {
                         name: "thumbnail",
                         type: "varchar",
                         isNullable: true,
+                    },
+                    {
+                        name: "user_id",
+                        type: "integer",
+                        isNullable: true,
+                    }
+                ],
+                foreignKeys: [
+                    {
+                        name: "fk_user",
+                        referencedTableName: "user",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["user_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE",
                     },
                 ]
             })

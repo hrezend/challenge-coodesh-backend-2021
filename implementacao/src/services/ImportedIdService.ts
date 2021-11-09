@@ -11,8 +11,8 @@ class ImportedIdService{
         this.importedIdRepository = getCustomRepository(ImportedIdRepository);
     }
 
-    async createId(name: string, value: string){
-        const importedId = this.importedIdRepository.create({name, value});
+    async createId(name: string, value: string, user_id: Number){
+        const importedId = this.importedIdRepository.create({name, value, user_id});
         
         await this.importedIdRepository.save(importedId);
 

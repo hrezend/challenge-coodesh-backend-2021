@@ -8,11 +8,12 @@ export class NameMigration1636468186813 implements MigrationInterface {
                 name: "name",
                 columns: [
                     {
-                        name: "id",
-                        type: "integer",
+                        name: 'id',
+                        type: 'integer',
+                        unsigned: true,
                         isPrimary: true,
-                        isUnique: true,
                         isGenerated: true,
+                        generationStrategy: 'increment',
                     },
                     {
                         name: "title",
@@ -28,6 +29,21 @@ export class NameMigration1636468186813 implements MigrationInterface {
                         name: "last",
                         type: "varchar",
                         isNullable: true,
+                    },
+                    {
+                        name: "user_id",
+                        type: "integer",
+                        isNullable: true,
+                    }
+                ],
+                foreignKeys: [
+                    {
+                        name: "fk_user",
+                        referencedTableName: "user",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["user_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE",
                     },
                 ]
             })

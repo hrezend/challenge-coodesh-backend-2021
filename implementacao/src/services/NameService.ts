@@ -11,8 +11,8 @@ class NameService{
         this.nameRepository = getCustomRepository(NameRepository);
     }
 
-    async createName(title: string, first: string, last: string){
-        const name = this.nameRepository.create({title, first, last});
+    async createName(title: string, first: string, last: string, user_id: Number){
+        const name = this.nameRepository.create({title, first, last, user_id});
         
         await this.nameRepository.save(name);
 

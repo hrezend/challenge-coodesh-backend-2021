@@ -11,8 +11,8 @@ class DobService{
         this.dobRepository = getCustomRepository(DobRepository);
     }
 
-    async createDob(date: Date, age: Number){
-        const dob = this.dobRepository.create({date, age});
+    async createDob(date: Date, age: Number, user_id: Number){
+        const dob = this.dobRepository.create({date, age, user_id});
         
         await this.dobRepository.save(dob);
 
