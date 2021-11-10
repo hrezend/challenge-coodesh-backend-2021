@@ -1,7 +1,8 @@
-import { Request, Response } from 'express';
 import axios from 'axios';
+import { Request, Response } from 'express';
 
 import { configs } from '../configs/configs';
+
 import { UserService } from '../services/UserService';
 import { NameService } from '../services/NameService';
 import { LocationService } from '../services/LocationService';
@@ -11,13 +12,14 @@ import { ImportedIdService } from '../services/ImportedIdService';
 import { RegisteredService } from '../services/RegisteredService';
 import { PictureService } from '../services/PictureService';
 
-class CRON{
+class CRON {
 
-    async download(request: Request, response: Response) : Promise<Response>{
-        
-        try{
+    async download(request: Request, response: Response): Promise<Response> {
+
+        try {
             const req = await axios.get(`https://randomuser.me/api/?results=${configs.limitePorChamada}`);
 
+            const userService = new UserService();
             const nameService = new NameService();
             const locationService = new LocationService();
             const loginService = new LoginService();
@@ -25,9 +27,8 @@ class CRON{
             const importedIdService = new ImportedIdService();
             const registeredService = new RegisteredService();
             const pictureService = new PictureService();
-            const userService = new UserService();
 
-            for(var i = 0; i < req.data.results.length; i++){
+            for (var i = 0; i < req.data.results.length; i++) {
                 const { title, first, last } = req.data.results[i].name;
                 const { number, name: nameST } = req.data.results[i].location.street;
                 const { latitude, longitude } = req.data.results[i].location.coordinates;
@@ -41,7 +42,6 @@ class CRON{
                 const { gender, email, phone, cell, nat } = req.data.results[i];
 
                 const user = await userService.createUser(gender, email, phone, cell, nat);
-
                 const name = await nameService.createName(title, first, last, user.id);
                 const location = await locationService.createLocation(city, state, country, postcode, latitude, longitude, offset, description, number, nameST, user.id);
                 const login = await loginService.createLogin(uuid, username, password, salt, md5, sha1, sha256, user.id);
@@ -51,9 +51,9 @@ class CRON{
                 const picture = await pictureService.createPicture(large, medium, thumbnail, user.id);
             }
 
-            return response.status(201).json({message: 'Database has been incremented!'});
+            return response.status(201).json({ message: 'Data has been injetected!' });
         }
-        catch(error){
+        catch (error) {
             return response.status(400).json(error.message);
         }
 
