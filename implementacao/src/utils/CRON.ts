@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
 
+import { configs } from '../configs/configs';
 import { UserService } from '../services/UserService';
 import { NameService } from '../services/NameService';
 import { LocationService } from '../services/LocationService';
@@ -15,7 +16,7 @@ class CRON{
     async download(request: Request, response: Response) : Promise<Response>{
         
         try{
-            const req = await axios.get(`https://randomuser.me/api/?results=${100}`);
+            const req = await axios.get(`https://randomuser.me/api/?results=${configs.limitePorChamada}`);
 
             const nameService = new NameService();
             const locationService = new LocationService();
@@ -50,7 +51,7 @@ class CRON{
                 const picture = await pictureService.createPicture(large, medium, thumbnail, user.id);
             }
 
-            return response.status(201).json({message: 'User created!'});
+            return response.status(201).json({message: 'Database has been incremented!'});
         }
         catch(error){
             return response.status(400).json(error.message);
