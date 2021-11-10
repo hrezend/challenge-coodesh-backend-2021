@@ -66,14 +66,14 @@ Desenvolver uma API cujo database é alimentado dinamicamente, e oferecer rotas 
   # Roda as migrations e cria o banco de dados
   $ npm run migration:run
 ```
-Se tudo der certo, basta acessar http://localhost:3333/
+Se tudo der certo, basta acessar o [localhost](http://localhost:3333/)
 
 Os endpoints da API são:
    - `GET /` - retorna informações da API
    - `GET /users` - lista as informações de todos os usuários da base de dados
    - `GET /users/:userId` - lista as informações de um usuário especificado no parâmetro
    - `PUT /users/:userId` - será responsável por receber atualizações dos dados para o usuário especificado no parâmetro
-   - `DELETE /users/:userId`: - remove da base de dados o usuário especificado no parâmetro
+   - `DELETE /users/:userId` - remove da base de dados o usuário especificado no parâmetro
 
 ---
 
