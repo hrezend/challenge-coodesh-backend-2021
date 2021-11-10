@@ -11,7 +11,7 @@
 
 ## :dart: Introdução
 
-Este foi um desafio realizado para testar os meus conhecimentos em Back-end utilizando **Node.js**. 
+Este foi o [desafio](https://lab.coodesh.com/public-challenges/back-end-challenge-2021) realizado para testar os meus conhecimentos em Back-end utilizando **Node.js**. 
 
 <a id="desafios"></a>
 
@@ -37,6 +37,7 @@ Desenvolver uma API cujo database é alimentado dinamicamente, e oferecer rotas 
 - [TypeORM](https://typeorm.io/#/)
 - [SQLite](https://www.sqlite.org/index.html)
 - [Jest](https://jestjs.io/pt-BR/)
+- [Supertest](https://github.com/visionmedia/supertest)
 - [Express](https://expressjs.com/pt-br/)
 - [Axios](https://axios-http.com/docs/intro)
 
@@ -48,13 +49,13 @@ Desenvolver uma API cujo database é alimentado dinamicamente, e oferecer rotas 
 
   - É **necessário** possuir o **[Docker](https://www.docker.com/)** instalado na máquina.
 
-1. Faça um clone do repositório:
+1. Faça um clone deste repositório:
 
 ```sh
   $ git clone https://github.com/hrezend/challenge-coodesh-backend-2021
 ```
 
-2. Executando a Aplicação:
+2. Execute a Aplicação:
 
 ```sh
   # Acessa o diretório da aplicação
@@ -66,7 +67,7 @@ Desenvolver uma API cujo database é alimentado dinamicamente, e oferecer rotas 
   # Roda as migrations e cria o banco de dados
   $ npm run migration:run
 ```
-Se tudo der certo, basta acessar o [localhost](http://localhost:3333/)
+Se tudo der certo, basta acessar -> <a href="http://localhost:3333/" target= "_blank">localhost</a>
 
 Os endpoints da API são:
    - `GET /` - retorna informações da API
