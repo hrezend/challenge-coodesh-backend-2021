@@ -37,7 +37,7 @@ class UserService{
             return false;
         }
 
-        await this.userRepository.createQueryBuilder().update(User).set({ name: "HÉRSÃO" }).where("id = :id", {id}).execute();
+        await this.userRepository.createQueryBuilder().update(User).set({ gender: "BORIBILD" }).where("id = :id", {id}).execute();
         
         return true;
     }

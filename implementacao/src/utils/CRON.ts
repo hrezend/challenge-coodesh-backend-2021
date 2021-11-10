@@ -15,7 +15,7 @@ class CRON{
     async download(request: Request, response: Response) : Promise<Response>{
         
         try{
-            const req = await axios.get('https://randomuser.me/api/');
+            const req = await axios.get(`https://randomuser.me/api/?results=${100}`);
 
             const nameService = new NameService();
             const locationService = new LocationService();
@@ -50,10 +50,10 @@ class CRON{
                 const picture = await pictureService.createPicture(large, medium, thumbnail, user.id);
             }
 
-            return response.status(200).json(user);
+            return response.status(201).json({message: 'User created!'});
         }
         catch(error){
-            return response.status(500).json(error.message);
+            return response.status(400).json(error.message);
         }
 
     }
